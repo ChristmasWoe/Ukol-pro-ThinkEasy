@@ -11,7 +11,8 @@
 .header-button {
   width: 64px;
   height: 48px;
-  background: white;
+  background: #ffffff;
+  /* #353839; */
   position: relative;
   right: 0px;
   border-left: 1px gray solid;

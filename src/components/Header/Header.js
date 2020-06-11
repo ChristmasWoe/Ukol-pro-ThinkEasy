@@ -39,7 +39,7 @@ class Header extends React.Component {
             <div id="header">
                 <div id="nav-wrapper">
 
-                    <div className="header-button">1</div>
+                    <div className="header-button"></div>
                     {/* <div className="header-button">1</div> */}
                     <div className="header-button">
                         <ReactFlagsSelect
@@ -51,7 +51,7 @@ class Header extends React.Component {
                             onSelect={this.onLangSelect}
                         />
                     </div>
-                    <div className="header-button">1</div>
+                    <div className="header-button"></div>
                 </div>
 
             </div>
