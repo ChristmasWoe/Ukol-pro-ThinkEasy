@@ -1,36 +1,16 @@
 import React from 'react';
 import './Form.css';
-import { setAction, setPlace, setPerson, setTime } from '../../redux/actions';
+import { setAction, setPlace, setPerson, setTime, setDefault } from '../../redux/actions';
 import { connect } from 'react-redux';
-import i18n from "i18next";
-import { withTranslation, initReactI18next } from "react-i18next";
 import posed from 'react-pose';
+import i18n from "i18next";
+import { withTranslation, initReactI18next, } from "react-i18next";
+import { resources } from '../../assets/translations'
 
 i18n
     .use(initReactI18next) // passes i18n down to react-i18next
     .init({
-        resources: {
-            en: {
-                translation: {
-                    "Title": "Title",
-                    "WhoQ": "Who are you?",
-                    "WhatQ": "What are you doing?",
-                    "WhenQ": "When are you doing this?",
-                    "WhereQ": "Where are you doing this?",
-                    "Generate": "Generate sentence"
-                }
-            },
-            cz: {
-                translation: {
-                    "Title": "Nadpis",
-                    "WhoQ": "Kdo jste?",
-                    "WhatQ": "Co děláte?",
-                    "WhenQ": "Kdy to děláte?",
-                    "WhereQ": "Kde to děláte?",
-                    "Generate": "Vytvářet větu"
-                }
-            }
-        },
+        resources: resources,
         lng: "en",
         fallbackLng: "en",
 
@@ -44,6 +24,7 @@ const mapDispatchToProps = dispatch => ({
     setPlace: place => dispatch(setPlace(place)),
     setPerson: person => dispatch(setPerson(person)),
     setTime: time => dispatch(setTime(time)),
+    setDefault: () => dispatch(setDefault()),
 })
 
 const mapStateToProps = state => ({
@@ -136,9 +117,13 @@ class Form extends React.Component {
             })
         },
             500);
-
+        this.props.setDefault();
 
     }
+
+    // componentWillUnmount(){
+    //     this.setState
+    // }
 
     render() {
         const { t } = this.props;
@@ -156,8 +141,10 @@ class Form extends React.Component {
         } else {
             return (
                 <div>
-                    <Window pose={showSecond ? 'moveNext' : isVisible ? 'visible' : 'hidden'} >
-                        <div id="main-form">
+                    <Window className="window" pose={showSecond ? 'moveNext' : isVisible ? 'visible' : 'hidden'} >
+                        <div
+                            // style={{ marginTop: '9%' }}
+                            id="main-form">
 
                             <Child pose={showChildren ? 'visible' : 'hidden'} >
                                 <div id="form-title">{t('Title')}</div>

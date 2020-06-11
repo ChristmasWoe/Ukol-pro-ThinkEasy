@@ -1,4 +1,4 @@
-import { SET_LANGUAGE, SET_PLACE, SET_TIME, SET_ACTION, SET_PERSON } from './constants';
+import { SET_LANGUAGE, SET_PLACE, SET_TIME, SET_ACTION, SET_PERSON, TOGGLE_MODE, SET_DEFAULT } from './constants';
 
 const serviceInitialState = {
     lang: 'en',
@@ -20,6 +20,19 @@ export const setServiceState = (state = serviceInitialState, action = {}) => {
                 ...state,
                 lang: action.payload,
             }
+        case TOGGLE_MODE:
+            if (state.mode == 'form') {
+                return {
+                    ...state,
+                    mode: 'popup'
+                }
+            } else {
+                return {
+                    ...state,
+                    mode: 'form'
+                }
+            }
+
         default:
             return state;
     }
@@ -47,6 +60,8 @@ export const setDataState = (state = dataInitialState, action = {}) => {
                 ...state,
                 place: action.payload,
             }
+        case SET_DEFAULT:
+            return dataInitialState;
         default:
             return state;
     }
