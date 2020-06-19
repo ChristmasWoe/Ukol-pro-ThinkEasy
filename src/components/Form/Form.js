@@ -104,7 +104,7 @@ class Form extends React.Component {
 
     generateSentence = () => {
         const { place, person, time, action } = this.props;
-        const res = person.trim() + ' ' + action.trim() + ' ' + time.trim() + ' ' + place.trim();
+        const res = person.trim() + ' ' + action.trim() + ' ' + place.trim() + ' ' + time.trim();
         this.setState({
             showSecond: true,
             result: res,
